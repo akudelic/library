@@ -1,0 +1,32 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head> 
+    <title>Loan</title> 
+    <meta charset="UTF-8"> 
+</head>
+<style type="text/css">
+    .text-center{
+        text-align: center;
+    }
+    .button {
+        background-color: #a9a9a9; /* Green */
+        border: none;
+        color: white;
+        padding: 20px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 16px;
+        margin: 4px 2px;
+        cursor: pointer;
+        border-radius: 8px;
+    }
+</style>
+<body class="text-center">
+    <form action="#" th:action="@{/loan-book}" method="post">
+        <input type="hidden" name="idBook" id="idBook" th:value="${idBook}" />
+        <label for="userName">Enter your name:</label>
+        <input type="text" name="userName" id="userName" value/></br>
+        <button class="button" type="submit" name="submit">Loan Book</button>
+    </form>
+</body>

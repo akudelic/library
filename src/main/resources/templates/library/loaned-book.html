@@ -1,0 +1,72 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head> 
+    <title>Loaned Books</title> 
+    <meta charset="UTF-8"> 
+</head>
+<style type="text/css">
+    .tg  {border-collapse:collapse;border-spacing:0;}
+    .tg td{border-color:black;border-style:solid;border-width:1px;font-family:Arial, sans-serif;font-size:14px;
+      overflow:hidden;padding:10px 5px;word-break:normal;}
+    .tg th{border-color:black;border-style:solid;border-width:1px;font-family:Arial, sans-serif;font-size:14px;
+      font-weight:normal;overflow:hidden;padding:10px 5px;word-break:normal;}
+    .tg .tg-0lax{text-align:left;vertical-align:top}
+    .tg-strong{
+        font-weight: bold !important;
+    }
+    .text-center{
+        text-align: center;
+    }
+    .button {
+        background-color: #a9a9a9; /* Green */
+        border: none;
+        color: white;
+        padding: 20px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 16px;
+        margin: 4px 2px;
+        cursor: pointer;
+        border-radius: 8px;
+    }
+    </style>
+<body>
+    <table class="tg">
+        <thead>
+            <tr>
+                <th class="tg-0lax tg-strong">ID</th>
+                <th class="tg-0lax tg-strong">Author</th>
+                <th class="tg-0lax tg-strong">Title</th>
+                <th class="tg-0lax tg-strong">Genre</th>
+                <th class="tg-0lax tg-strong">Price</th>
+                <th class="tg-0lax tg-strong">Publish Date</th>
+                <th class="tg-0lax tg-strong">Description</th>
+                <th class="tg-0lax tg-strong">Loaned By</th>
+                <th class="tg-0lax tg-strong">Return</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="book: ${loanedBooks}">
+                <form action="#" th:action="@{/return}" method="post">
+                    <td class="tg-0lax" th:text="${book.id}"></td>
+                    <td class="tg-0lax" th:text="${book.author}"></td>
+                    <td class="tg-0lax" th:text="${book.title}"></td>
+                    <td class="tg-0lax" th:text="${book.genre}"></td>
+                    <td class="tg-0lax" th:text="${book.price}"></td>
+                    <td class="tg-0lax" th:text="${book.publishDate}"></td>
+                    <td class="tg-0lax" th:text="${book.description}"></td>
+                    <td class="tg-0lax text-center" th:each="loan: ${loans}"
+                        th:if="${loan.idBook == book.id}"
+                        th:text="${loan.userName}">
+                    </td>
+                    <td class="tg-0lax text-center">
+                        <input type="hidden" name="bookId" id="bookId" th:value="${book.id}" />
+                        <button type="submit" name="submit" class="button">Return</button>
+                    </td>
+                </form>
+            </tr>
+        </tbody>
+    </table>
+</body>
+</html>
